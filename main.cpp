@@ -96,7 +96,7 @@ int main()
     while (true)
     {
         cout << "\nEnter word to search (-1 to break): ";
-        getline(std::cin, word);
+        getline(cin, word);
 
         if (word == "-1")
             break;

@@ -6,8 +6,9 @@
 #include <chrono>
 using namespace std;
 
-struct TrieNode
+class TrieNode
 {
+public:
     bool isEnd;
     unordered_map<char, TrieNode *> children;
 

@@ -91,7 +91,7 @@ int main()
 
     auto end3 = chrono::high_resolution_clock::now();
     chrono::duration<double> insert3 = end3 - start3;
-    cout << "\nInsert time of compressed Trie: " << insert3.count() << " s";
+    cout << "\nInsert time of compressed Trie: " << insert3.count() << " s\n";
 
     while (true)
     {

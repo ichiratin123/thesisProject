@@ -6,29 +6,29 @@
 #include <chrono>
 using namespace std;
 
-class Node
+class TrieNode3
 {
 public:
-    unordered_map<char, pair<string, Node *>> children;
+    unordered_map<char, pair<string, TrieNode3 *>> children;
     bool isEnd;
 
-    Node(bool isEnd = false) : isEnd(isEnd) {}
+    TrieNode3(bool isEnd = false) : isEnd(isEnd) {}
 };
 
 class CompressedTrie
 {
 private:
-    Node *root;
+    TrieNode3 *root;
 
 public:
     CompressedTrie()
     {
-        root = new Node();
+        root = new TrieNode3();
     }
 
     void insert(string word)
     {
-        Node *node = root;
+        TrieNode3 *node = root;
         size_t i = 0;
 
         while (i < word.length())
@@ -37,13 +37,13 @@ public:
 
             if (node->children.find(firstChar) == node->children.end())
             {
-                node->children[firstChar] = {word.substr(i), new Node(true)};
+                node->children[firstChar] = {word.substr(i), new TrieNode3(true)};
                 return;
             }
 
             auto &entry = node->children[firstChar];
             string &label = entry.first;
-            Node *child = entry.second;
+            TrieNode3 *child = entry.second;
 
             size_t j = 0;
             while (j < label.length() && i < word.length() && label[j] == word[i])
@@ -61,12 +61,12 @@ public:
                 string remainingLabel = label.substr(j);
                 string remainingWord = word.substr(i);
 
-                Node *newChild = new Node();
+                TrieNode3 *newChild = new TrieNode3();
                 newChild->children[remainingLabel[0]] = {remainingLabel, child};
 
                 if (!remainingWord.empty())
                 {
-                    newChild->children[remainingWord[0]] = {remainingWord, new Node(true)};
+                    newChild->children[remainingWord[0]] = {remainingWord, new TrieNode3(true)};
                 }
                 else
                 {
@@ -83,7 +83,7 @@ public:
 
     bool search(const string &word)
     {
-        Node *node = root;
+        TrieNode3 *node = root;
         size_t i = 0;
 
         while (i < word.length())
@@ -97,7 +97,7 @@ public:
 
             auto &entry = node->children[firstChar];
             string &label = entry.first;
-            Node *child = entry.second;
+            TrieNode3 *child = entry.second;
 
             size_t j = 0;
             while (j < label.length() && i < word.length())

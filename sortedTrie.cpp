@@ -6,12 +6,14 @@
 #include <chrono>
 using namespace std;
 
-struct TrieNode2
+class TrieNode2
 {
+public:
     bool isEnd;
     map<char, TrieNode2 *> children;
     TrieNode2() : isEnd(false) {}
 };
+
 class TrieSortedMap
 {
 private:

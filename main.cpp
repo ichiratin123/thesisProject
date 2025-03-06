@@ -49,7 +49,7 @@ int main()
 
     auto end1 = chrono::high_resolution_clock::now();
     chrono::duration<double> insert1 = end1 - start1;
-    cout << "\nInsert time of non-sorted array Trie: " << insert1.count() << " s\n";
+    cout << "\nInsert time of non-sorted array Trie: " << insert1.count() << " s";
 
     auto start2 = chrono::high_resolution_clock::now();
     for (const auto &filename : files)
@@ -70,7 +70,7 @@ int main()
 
     auto end2 = chrono::high_resolution_clock::now();
     chrono::duration<double> insert2 = end2 - start2;
-    cout << "\nInsert time of sorted array Trie: " << insert2.count() << " s\n";
+    cout << "\nInsert time of sorted array Trie: " << insert2.count() << " s";
 
     auto start3 = chrono::high_resolution_clock::now();
     for (const auto &filename : files)
@@ -91,7 +91,7 @@ int main()
 
     auto end3 = chrono::high_resolution_clock::now();
     chrono::duration<double> insert3 = end3 - start3;
-    cout << "\nInsert time of compressed Trie: " << insert3.count() << " s\n";
+    cout << "\nInsert time of compressed Trie: " << insert3.count() << " s";
 
     while (true)
     {

@@ -131,9 +131,9 @@ int main()
         cout << "\n========== MENU ==========";
         cout << "\n1. Insert English words";
         cout << "\n2. Insert Vietnamese words";
-        cout << "\n3. Insert Random Short Words";
-        cout << "\n4. Insert Special Characters Words";
-        cout << "\n5. Insert Long Words";
+        cout << "\n3. Insert Czech words";
+        cout << "\n4. Insert Chinese words";
+        cout << "\n5. Insert Random Words";
         cout << "\n6. Insert All";
         cout << "\n7. End";
         cout << "\n==========================";
@@ -154,21 +154,26 @@ int main()
             insertWords(files, trie1, trie2, trie3);
             break;
         case 3:
-            files = {"E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random1.txt"};
+            files = {"E:\\code\\Thesis\\C++Code\\thesisProject\\data\\czech.txt"};
             insertWords(files, trie1, trie2, trie3);
             break;
         case 4:
-            files = {"E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random2.txt"};
+            files = {"E:\\code\\Thesis\\C++Code\\thesisProject\\data\\chinese.txt"};
             insertWords(files, trie1, trie2, trie3);
             break;
         case 5:
-            files = {"E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random3.txt"};
+            files = {
+                "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random1.txt",
+                "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random2.txt",
+                "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random3.txt"};
             insertWords(files, trie1, trie2, trie3);
             break;
         case 6:
             files = {
                 "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\words.txt",
                 "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\Viet74K.txt",
+                "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\czech.txt",
+                "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\chinese.txt",
                 "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random1.txt",
                 "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random2.txt",
                 "E:\\code\\Thesis\\C++Code\\thesisProject\\data\\random3.txt"};

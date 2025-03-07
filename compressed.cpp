@@ -29,7 +29,10 @@ private:
         {
             string label = entry.second.first;
             TrieNode3 *child = entry.second.second;
-            cout << prefix << "Label: \"" << label << "\"\n";
+            cout << prefix << "|-- \"" << label << "\"";
+            if (child->isEnd)
+                cout << " (END)";
+            cout << endl;
             printChildren(child, prefix + "  ");
         }
     }

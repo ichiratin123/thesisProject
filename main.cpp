@@ -143,7 +143,8 @@ int main()
         cout << "\n4. Insert Chinese words";
         cout << "\n5. Insert Random Words";
         cout << "\n6. Insert All";
-        cout << "\n7. End";
+        cout << "\n7 Insert Test words";
+        cout << "\n8. End";
         cout << "\n==========================";
         cout << "\nYour choice: ";
         cin >> choice;
@@ -188,6 +189,10 @@ int main()
             insertWords(files, trie1, trie2, trie3);
             break;
         case 7:
+            files = {"E:\\code\\Thesis\\C++Code\\thesisProject\\data\\test.txt"};
+            insertWords(files, trie1, trie2, trie3);
+            break;
+        case 8:
             cout << "Exiting program\n";
             return 0;
         default:

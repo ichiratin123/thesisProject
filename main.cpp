@@ -95,13 +95,15 @@ void insertWords(const vector<string> &files, TrieUnsortedArray &trie1, TrieSort
         if (choice2 == 'y' || choice2 == 'Y')
         {
             int trieChoice;
-            cout << "Which Trie do you want to print?\n";
+            cout << "\nWhich Trie do you want to print?\n";
+            cout << "==========================\n";
             cout << "1. Trie Unsorted Array (unordered_map)\n";
             cout << "2. Trie Sorted Array (map)\n";
             cout << "3. Compressed Trie with unorder_map\n";
+            cout << "==========================\n";
             cout << "Enter choice (1/2/3): ";
             cin >> trieChoice;
-
+            cout << "\n";
             switch (trieChoice)
             {
             case 1:
@@ -143,7 +145,7 @@ int main()
         cout << "\n4. Insert Chinese words";
         cout << "\n5. Insert Random Words";
         cout << "\n6. Insert All";
-        cout << "\n7 Insert Test words";
+        cout << "\n7. Insert Test words";
         cout << "\n8. End";
         cout << "\n==========================";
         cout << "\nYour choice: ";

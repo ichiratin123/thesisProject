@@ -19,21 +19,21 @@ class TrieSortedMap
 private:
     TrieNode2 *root;
 
-    void printChildren(TrieNode2 *node, string prefix, int depth)
+    void print(TrieNode2 *node, string p, int d)
     {
         if (!node)
             return;
 
-        for (const auto &entry : node->children)
+        for (const auto &i : node->children)
         {
-            char key = entry.first;
-            TrieNode2 *child = entry.second;
-            string current_label = prefix + key;
-            cout << string(depth * 2, ' ') << "|-- " << key;
+            char key = i.first;
+            TrieNode2 *child = i.second;
+            string label = p + key;
+            cout << string(d * 2, ' ') << "|-- " << key;
             if (child->isEnd)
-                cout << " (END)";
+                cout << " (end)";
             cout << endl;
-            printChildren(child, current_label, depth + 1);
+            print(child, label, d + 1);
         }
     }
 
@@ -46,13 +46,13 @@ public:
     void insert(const string &word)
     {
         TrieNode2 *node = root;
-        for (char ch : word)
+        for (char c : word)
         {
-            if (node->children.find(ch) == node->children.end())
+            if (node->children.find(c) == node->children.end())
             {
-                node->children[ch] = new TrieNode2();
+                node->children[c] = new TrieNode2();
             }
-            node = node->children[ch];
+            node = node->children[c];
         }
         node->isEnd = true;
     }
@@ -62,22 +62,22 @@ public:
         TrieNode2 *node = root;
         if (node == nullptr)
             return false;
-        for (char ch : word)
+        for (char c : word)
         {
-            if (node->children.count(ch) == 0)
+            if (node->children.count(c) == 0)
                 return false;
-            node = node->children[ch];
+            node = node->children[c];
         }
         return node->isEnd;
     }
 
     void printTrie()
     {
-        cout << "Trie (Unsorted Array) Structure:\n";
-        printChildren(root, "", 0);
+        cout << "Trie (Unsorted Array):\n";
+        print(root, "", 0);
     }
 
-    double measureSearchTime(const string &word)
+    double searchTime(const string &word)
     {
         auto start = chrono::high_resolution_clock::now();
         bool found = search(word);

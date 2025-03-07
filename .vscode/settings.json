@@ -10,6 +10,11 @@
     "iostream": "cpp",
     "string": "cpp",
     "vector": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp",
+    "xlocinfo": "cpp",
+    "xtree": "cpp",
+    "xutility": "cpp"
   }
 }

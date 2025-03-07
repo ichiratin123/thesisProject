@@ -15,12 +15,12 @@ void insertWords(const vector<string> &files, TrieUnsortedArray &trie1, TrieSort
     string word;
 
     auto start1 = chrono::high_resolution_clock::now();
-    for (const auto &filename : files)
+    for (const auto &f : files)
     {
-        ifstream file(filename);
+        ifstream file(f);
         if (!file)
         {
-            cerr << "File error: " << filename << "\n";
+            cerr << "file error: " << f << "\n";
             return;
         }
 
@@ -35,12 +35,12 @@ void insertWords(const vector<string> &files, TrieUnsortedArray &trie1, TrieSort
     cout << "\nInsert time of NonSorted Array Trie: " << insert1.count() << " s";
 
     auto start2 = chrono::high_resolution_clock::now();
-    for (const auto &filename : files)
+    for (const auto &f : files)
     {
-        ifstream file(filename);
+        ifstream file(f);
         if (!file)
         {
-            cerr << "File error: " << filename << "\n";
+            cerr << "file error: " << f << "\n";
             return;
         }
 
@@ -55,12 +55,12 @@ void insertWords(const vector<string> &files, TrieUnsortedArray &trie1, TrieSort
     cout << "\nInsert time of Sorted Array Trie: " << insert2.count() << " s";
 
     auto start3 = chrono::high_resolution_clock::now();
-    for (const auto &filename : files)
+    for (const auto &f : files)
     {
-        ifstream file(filename);
+        ifstream file(f);
         if (!file)
         {
-            cerr << "File error: " << filename << "\n";
+            cerr << "file error: " << f << "\n";
             return;
         }
 
@@ -82,9 +82,9 @@ void insertWords(const vector<string> &files, TrieUnsortedArray &trie1, TrieSort
         if (word == "-1")
             break;
 
-        trie1.measureSearchTime(word);
-        trie2.measureSearchTime(word);
-        trie3.measureSearchTime(word);
+        trie1.searchTime(word);
+        trie2.searchTime(word);
+        trie3.searchTime(word);
     }
     while (true)
     {
@@ -114,7 +114,7 @@ void insertWords(const vector<string> &files, TrieUnsortedArray &trie1, TrieSort
                 trie3.printTrie();
                 break;
             default:
-                cout << "Invalid choice. Returning to search menu.\n";
+                cout << "Error choice.\n";
             }
         }
         else
@@ -196,7 +196,7 @@ int main()
             cout << "Exiting program\n";
             return 0;
         default:
-            cout << "Invalid choice. Please enter again.\n";
+            cout << "Error choice.\n";
         }
     }
 

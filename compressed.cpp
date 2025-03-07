@@ -20,20 +20,20 @@ class CompressedTrie
 private:
     TrieNode3 *root;
 
-    void printChildren(TrieNode3 *node, string prefix)
+    void print(TrieNode3 *node, string p)
     {
         if (!node)
             return;
 
-        for (const auto &entry : node->children)
+        for (const auto &i : node->children)
         {
-            string label = entry.second.first;
-            TrieNode3 *child = entry.second.second;
-            cout << prefix << "|-- \"" << label << "\"";
+            string label = i.second.first;
+            TrieNode3 *child = i.second.second;
+            cout << p << "|-- \"" << label << "\"";
             if (child->isEnd)
-                cout << " (END)";
+                cout << " (end)";
             cout << endl;
-            printChildren(child, prefix + "  ");
+            print(child, p + "  ");
         }
     }
 
@@ -58,9 +58,9 @@ public:
                 return;
             }
 
-            auto &entry = node->children[firstChar];
-            string &label = entry.first;
-            TrieNode3 *child = entry.second;
+            auto &start = node->children[firstChar];
+            string &label = start.first;
+            TrieNode3 *child = start.second;
 
             size_t j = 0;
             while (j < label.length() && i < word.length() && label[j] == word[i])
@@ -75,15 +75,15 @@ public:
             }
             else
             {
-                string remainingLabel = label.substr(j);
-                string remainingWord = word.substr(i);
+                string remainLabel = label.substr(j);
+                string remainWord = word.substr(i);
 
                 TrieNode3 *newChild = new TrieNode3();
-                newChild->children[remainingLabel[0]] = {remainingLabel, child};
+                newChild->children[remainLabel[0]] = {remainLabel, child};
 
-                if (!remainingWord.empty())
+                if (!remainWord.empty())
                 {
-                    newChild->children[remainingWord[0]] = {remainingWord, new TrieNode3(true)};
+                    newChild->children[remainWord[0]] = {remainWord, new TrieNode3(true)};
                 }
                 else
                 {
@@ -112,9 +112,9 @@ public:
                 return false;
             }
 
-            auto &entry = node->children[firstChar];
-            string &label = entry.first;
-            TrieNode3 *child = entry.second;
+            auto &start = node->children[firstChar];
+            string &label = start.first;
+            TrieNode3 *child = start.second;
 
             size_t j = 0;
             while (j < label.length() && i < word.length())
@@ -140,11 +140,11 @@ public:
 
     void printTrie()
     {
-        cout << "Compressed Trie Structure:\n";
-        printChildren(root, "");
+        cout << "Compressed Trie:\n";
+        print(root, "");
     }
 
-    double measureSearchTime(const string &word)
+    double searchTime(const string &word)
     {
         auto start = chrono::high_resolution_clock::now();
         bool found = search(word);

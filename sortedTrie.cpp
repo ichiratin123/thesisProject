@@ -19,6 +19,24 @@ class TrieSortedMap
 private:
     TrieNode2 *root;
 
+    void printChildren(TrieNode2 *node, string prefix, int depth)
+    {
+        if (!node)
+            return;
+
+        for (const auto &entry : node->children)
+        {
+            char key = entry.first;
+            TrieNode2 *child = entry.second;
+            string current_label = prefix + key;
+            cout << string(depth * 2, ' ') << "|-- " << key;
+            if (child->isEnd)
+                cout << " (END)";
+            cout << endl;
+            printChildren(child, current_label, depth + 1);
+        }
+    }
+
 public:
     TrieSortedMap()
     {
@@ -52,6 +70,13 @@ public:
         }
         return node->isEnd;
     }
+
+    void printTrie()
+    {
+        cout << "Trie (Unsorted Array) Structure:\n";
+        printChildren(root, "", 0);
+    }
+
     double measureSearchTime(const string &word)
     {
         auto start = chrono::high_resolution_clock::now();

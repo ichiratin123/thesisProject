@@ -20,6 +20,20 @@ class CompressedTrie
 private:
     TrieNode3 *root;
 
+    void printChildren(TrieNode3 *node, string prefix)
+    {
+        if (!node)
+            return;
+
+        for (const auto &entry : node->children)
+        {
+            string label = entry.second.first;
+            TrieNode3 *child = entry.second.second;
+            cout << prefix << "Label: \"" << label << "\"\n";
+            printChildren(child, prefix + "  ");
+        }
+    }
+
 public:
     CompressedTrie()
     {
@@ -119,6 +133,12 @@ public:
         }
 
         return node->isEnd;
+    }
+
+    void printTrie()
+    {
+        cout << "Compressed Trie Structure:\n";
+        printChildren(root, "");
     }
 
     double measureSearchTime(const string &word)

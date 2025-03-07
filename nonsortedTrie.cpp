@@ -20,6 +20,24 @@ class TrieUnsortedArray
 private:
     TrieNode *root;
 
+    void printChildren(TrieNode *node, string prefix, int depth)
+    {
+        if (!node)
+            return;
+
+        for (const auto &entry : node->children)
+        {
+            char key = entry.first;
+            TrieNode *child = entry.second;
+            string current_label = prefix + key;
+            cout << string(depth * 2, ' ') << "|-- " << key;
+            if (child->isEnd)
+                cout << " (END)";
+            cout << endl;
+            printChildren(child, current_label, depth + 1);
+        }
+    }
+
 public:
     TrieUnsortedArray()
     {
@@ -52,6 +70,12 @@ public:
             node = node->children[ch];
         }
         return node->isEnd;
+    }
+
+    void printTrie()
+    {
+        cout << "Trie (Sorted Array) Structure:\n";
+        printChildren(root, "", 0);
     }
 
     double measureSearchTime(const string &word)

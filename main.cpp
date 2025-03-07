@@ -74,34 +74,6 @@ void insertWords(const vector<string> &files, TrieUnsortedArray &trie1, TrieSort
     chrono::duration<double> insert3 = end3 - start3;
     cout << "\nInsert time of Compressed Trie: " << insert3.count() << " s\n";
 
-    // string choice = "y";
-    // do
-    // {
-    //     cout << "\nEnter word to search: ";
-    //     getline(cin, word);
-    //     trie1.measureSearchTime(word);
-    //     trie2.measureSearchTime(word);
-    //     trie3.measureSearchTime(word);
-
-    //     do
-    //     {
-    //         cout << "\nDo you want to search again? (y/n): ";
-    //         getline(cin, choice);
-
-    //         if (choice == "y" || choice == "Y")
-    //             break;
-    //         else if (choice == "n" || choice == "N")
-    //         {
-    //             cout << "Exiting search\n";
-    //             break;
-    //         }
-    //         else
-    //         {
-    //             cout << "Invalid input! Please enter 'y' or 'n'.\n";
-    //         }
-    //     } while (true);
-
-    // } while (choice == "y" || choice == "Y");
     while (true)
     {
         cout << "\nEnter word to search (-1 to break): ";
@@ -113,6 +85,42 @@ void insertWords(const vector<string> &files, TrieUnsortedArray &trie1, TrieSort
         trie1.measureSearchTime(word);
         trie2.measureSearchTime(word);
         trie3.measureSearchTime(word);
+    }
+    while (true)
+    {
+        char choice2;
+        cout << "Do you want to print a Trie? (y/n): ";
+        cin >> choice2;
+
+        if (choice2 == 'y' || choice2 == 'Y')
+        {
+            int trieChoice;
+            cout << "Which Trie do you want to print?\n";
+            cout << "1. Trie Unsorted Array (unordered_map)\n";
+            cout << "2. Trie Sorted Array (map)\n";
+            cout << "3. Compressed Trie with unorder_map\n";
+            cout << "Enter choice (1/2/3): ";
+            cin >> trieChoice;
+
+            switch (trieChoice)
+            {
+            case 1:
+                trie1.printTrie();
+                break;
+            case 2:
+                trie2.printTrie();
+                break;
+            case 3:
+                trie3.printTrie();
+                break;
+            default:
+                cout << "Invalid choice. Returning to search menu.\n";
+            }
+        }
+        else
+        {
+            break;
+        }
     }
 }
 

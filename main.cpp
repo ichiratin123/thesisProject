@@ -30,7 +30,7 @@ int wmain(int argc, wchar_t *argv[])
     CompressedTrie trie3;
     string word;
 
-    if (argc < 4)
+    if (argc < 2)
     {
         wcerr << L"Usage: trieapp <data> <command> <word/number>\n";
         wcerr << L"EX:\ntrieapp data/test.txt -s hello\n";
@@ -42,19 +42,6 @@ int wmain(int argc, wchar_t *argv[])
     }
 
     string data = utf16_to_utf8(argv[1]);
-    string cmm = utf16_to_utf8(argv[2]);
-
-    wstring r;
-    for (int i = 3; i < argc; i++)
-    {
-        if (i > 3)
-            r += L" ";
-        r += argv[i];
-    }
-
-    string s_word = utf16_to_utf8(r);
-
-    cerr << "input: " << s_word << "\n";
 
     auto start1 = chrono::high_resolution_clock::now();
     ifstream file1(data);
@@ -108,35 +95,51 @@ int wmain(int argc, wchar_t *argv[])
     chrono::duration<double> insert3 = end3 - start3;
     cout << "\nInsert time of Compressed Trie: " << insert3.count() << " s\n\n";
 
-    if (cmm == "-s")
+    if (argc == 2)
     {
+        return 0;
+    }
+
+    string cmm = utf16_to_utf8(argv[2]);
+    if (cmm == "-s" && argc == 4)
+    {
+
+        wstring r;
+        for (int i = 3; i < argc; i++)
+        {
+            if (i > 3)
+                r += L" ";
+            r += argv[i];
+        }
+
+        string s_word = utf16_to_utf8(r);
+
+        cerr << "input: " << s_word << "\n\n";
         trie1.searchTime(s_word);
         trie2.searchTime(s_word);
         trie3.searchTime(s_word);
     }
-    else
+    else if (cmm == "-p" && argc == 4)
     {
-        if (cmm == "-p" && argc == 4)
+
+        string choice = utf16_to_utf8(argv[3]);
+        if (choice == "1")
         {
-            string choice = utf16_to_utf8(argv[3]);
-            if (choice == "1")
-            {
-                trie1.printTrie();
-            }
-            else if (choice == "2")
-            {
-                trie2.printTrie();
-            }
-            else
-            {
-                trie3.printTrie();
-            }
+            trie1.printTrie();
+        }
+        else if (choice == "2")
+        {
+            trie2.printTrie();
         }
         else
         {
-            cerr << "Error command";
-            return 1;
+            trie3.printTrie();
         }
+    }
+    else
+    {
+        cerr << "Error command";
+        return 1;
     }
 
     return 0;

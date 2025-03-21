@@ -101,8 +101,12 @@ int wmain(int argc, wchar_t *argv[])
     }
 
     string cmm = utf16_to_utf8(argv[2]);
-    if (cmm == "-s" && argc == 4)
+    if (cmm == "-s")
     {
+        if (argv[3] == nullptr)
+        {
+            return 1;
+        }
 
         wstring r;
         for (int i = 3; i < argc; i++)
